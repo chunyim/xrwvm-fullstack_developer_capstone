@@ -31,7 +31,7 @@ const Dealers = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    if(retobj.status === 200) {
+    if (retobj.status === 200 && retobj.dealers) {
       let all_dealers = Array.from(retobj.dealers)
       let states = [];
       all_dealers.forEach((dealer)=>{
@@ -63,7 +63,7 @@ return(
       <select name="state" id="state" onChange={(e) => filterDealers(e.target.value)}>
       <option value="" selected disabled hidden>State</option>
       <option value="All">All States</option>
-      {states.map(state => (
+      {states && states.map(state => (
           <option value={state}>{state}</option>
       ))}
       </select>        
